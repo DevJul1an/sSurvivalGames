@@ -119,8 +119,7 @@ public class Command_SurvivalGames implements CommandExecutor {
 						if(f.exists()) {
 							FileConfiguration fc = YamlConfiguration.loadConfiguration(f);
 							
-							for(String s : fc.getConfigurationSection("").getKeys(false)) {
-								String uuid = s;
+							for(String uuid : fc.getConfigurationSection("").getKeys(false)) {
 								int deaths = fc.getInt(uuid + ".Deaths");
 								int kills = fc.getInt(uuid + ".Kills");
 								
@@ -132,12 +131,12 @@ public class Command_SurvivalGames implements CommandExecutor {
 								}
 							}
 							
-							cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§aStats successfully imported to MySQL.");
+							cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "Â§aStats successfully imported to MySQL.");
 						} else {
-							cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§cThere is no stats file.");
+							cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "Â§cThere is no stats file.");
 						}
 					} else {
-						cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§cThere is no MySQL Connection.");
+						cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "Â§cThere is no MySQL Connection.");
 					}
 				}
 			} else if(args[0].equalsIgnoreCase("Update")) {
@@ -154,7 +153,7 @@ public class Command_SurvivalGames implements CommandExecutor {
 				Inventory inv = Bukkit.createInventory(null, 9, mana.getMessage("Vote.InventoryName"));
 				
 				for(Map m : SurvivalGames.getMaps()) {
-					inv.addItem(ItemStackBuilder.builder().material(Material.MAP).displayname("§c" + m.getName()).lore("§6Votes: §c" + m.getVotes()).build());
+					inv.addItem(ItemStackBuilder.builder().material(Material.MAP).displayname("Â§c" + m.getName()).lore("Â§6Votes: Â§c" + m.getVotes()).build());
 				}
 				
 				((Player) cs).openInventory(inv);
@@ -174,8 +173,6 @@ public class Command_SurvivalGames implements CommandExecutor {
 						} catch(IOException e) {
 							e.printStackTrace();
 						}
-						// cs.sendMessage("§b[§6SurvivalGames§b] §aMap §e" +
-						// MapName + " §aerfolgreich erstellt!");
 						cs.sendMessage(mana.getMessage("Messages.CreateMap").replace("%map%", MapName));
 					} else {
 						cs.sendMessage(mana.getMessage("Messages.CreateMapFailed"));
@@ -270,15 +267,15 @@ public class Command_SurvivalGames implements CommandExecutor {
 	}
 	
 	public void sendHelp(CommandSender cs) {
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames Vote §f- §7Vote for a Map.");
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames Start §f- §7Starts the Game.");
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames SetHologram §f- §7Sets the Statshologram.");
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames SetLobby §f- §7Sets the Lobbyposition.");
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames CreateMap <Name> §f- §7Creates a Map with the name <Name>.");
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames ForceMap <ID> §f- §7Forced the Map <ID>.");
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames SetSpawn <Map> <Spawn> §f- §7Sets Spawn No. <Spawn> In Map <Map>.");
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames Reload §f- §7Reloads the plugin.");
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames ImportDataToSQL §f- §7Imports the Stats to MySQL");
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "ï¿½3/SurvivalGames Vote ï¿½f- ï¿½7Vote for a Map.");
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "ï¿½3/SurvivalGames Start ï¿½f- ï¿½7Starts the Game.");
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "ï¿½3/SurvivalGames SetHologram ï¿½f- ï¿½7Sets the Statshologram.");
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "ï¿½3/SurvivalGames SetLobby ï¿½f- ï¿½7Sets the Lobbyposition.");
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "ï¿½3/SurvivalGames CreateMap <Name> ï¿½f- ï¿½7Creates a Map with the name <Name>.");
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "ï¿½3/SurvivalGames ForceMap <ID> ï¿½f- ï¿½7Forced the Map <ID>.");
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "ï¿½3/SurvivalGames SetSpawn <Map> <Spawn> ï¿½f- ï¿½7Sets Spawn No. <Spawn> In Map <Map>.");
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "ï¿½3/SurvivalGames Reload ï¿½f- ï¿½7Reloads the plugin.");
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "ï¿½3/SurvivalGames ImportDataToSQL ï¿½f- ï¿½7Imports the Stats to MySQL");
 	}
 	
 }
