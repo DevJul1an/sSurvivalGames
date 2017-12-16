@@ -1,0 +1,254 @@
+# ____                                                  ___      
+#/\  _`\                           __                  /\_ \     
+#\ \,\L\_\  __  __  _ __   __  __ /\_\  __  __     __  \//\ \    
+# \/_\__ \ /\ \/\ \/\`'__\/\ \/\ \\/\ \/\ \/\ \  /'__`\  \ \ \   
+#   /\ \L\ \ \ \_\ \ \ \/ \ \ \_/ |\ \ \ \ \_/ |/\ \L\.\_ \_\ \_ 
+#   \ `\____\ \____/\ \_\  \ \___/  \ \_\ \___/ \ \__/.\_\/\____\
+#    \/_____/\/___/  \/_/   \/__/    \/_/\/__/   \/__/\/_/\/____/
+#                                                                                                                       
+# ____                                          
+#/\  _`\                                        
+#\ \ \L\_\     __      ___ ___      __    ____  
+# \ \ \L_L   /'__`\  /' __` __`\  /'__`\ /',__\ 
+#  \ \ \/, \/\ \L\.\_/\ \/\ \/\ \/\  __//\__, `\
+#   \ \____/\ \__/.\_\ \_\ \_\ \_\ \____\/\____/
+#    \/___/  \/__/\/_/\/_/\/_/\/_/\/____/\/___/ 
+
+Prefix: '&8[&6SurvivalGames&8] '
+
+MySQL:
+  Enable: false
+  Host: ''
+  Port: 3306
+  Database: ''
+  User: ''
+  Password: ''
+  
+MapReset: true
+
+BungeeCord:
+  fallback_server: 'Lobby'
+ 
+Vote:
+  InventoryName: '&6&lVoting'
+  
+Chest:
+  #Title: '&6&lSG-Chest'
+  Items:
+  #MATERIAL:SUBID:AMOUNT:CHANCE
+  - APPLE:0:1:5
+  - APPLE:0:2:3
+  - APPLE:0:3:1
+  
+  - COOKED_BEEF:0:1:5
+  - COOKED_BEEF:0:2:3
+  
+  - GOLDEN_APPLE:0:1:1
+  
+  - ROTTEN_FLESH:0:1:5
+  - ROTTEN_FLESH:0:2:3
+  - ROTTEN_FLESH:0:3:1
+  
+  - DIAMOND:0:1:2
+  
+  - IRON_INGOT:0:1:5
+  
+  - GOLD_INGOT:0:1:10
+  
+  - STICK:0:1:5
+  - STICK:0:2:3
+  - STICK:0:3:1
+  
+  - LEATHER_HELMET:0:1:10
+  - LEATHER_CHESTPLATE:0:1:10
+  - LEATHER_LEGGINGS:0:1:10
+  - LEATHER_BOOTS:0:1:10
+  
+  - CHAINMAIL_HELMET:0:1:7
+  - CHAINMAIL_CHESTPLATE:0:1:7
+  - CHAINMAIL_LEGGINGS:0:1:7
+  - CHAINMAIL_BOOTS:0:1:7
+  
+  - IRON_HELMET:0:1:3
+  - IRON_CHESTPLATE:0:1:3
+  - IRON_LEGGINGS:0:1:3
+  - IRON_BOOTS:0:1:3
+  
+  - WOOD_SWORD:0:1:10
+  - STONE_SWORD:0:1:7
+  - GOLD_SWORD:0:1:5
+  
+  - WOOD_AXE:0:1:10
+  - STONE_AXE:0:1:5
+  
+  - FISHING_ROD:0:1:5
+  
+Tracker:
+  OnStart: true
+  Radius: 100
+  Name: '&6Tracker'
+  
+LobbyItems:
+  Vote:
+    Material: EMPTY_MAP
+    Slot: 1
+    DisplayName: '&aVote'
+    Execute: '/sg vote'
+  Quit:
+    Material: SLIME_BALL
+    Slot: 9
+    DisplayName: '&aQuit'
+    Execute: 'ConnectToFallbackServer'
+
+Motd:
+  Lobby: '&aSurvivalGames&f: &eVoting'
+  WarmUp: '&aSurvivalGames&f: &eStarting'
+  Grace: '&aSurvivalGames&f: &eGrace [InGame]'
+  InGame: '&aSurvivalGames&f: &eInGame'
+  DeathMatch: '&aSurvivalGames&f: &eDeathMatch'
+  Restart: '&aSurvivalGames&f: &eRestarting'
+  
+Login:
+  WarmUp: '&cGame is already running!'
+  Grace: '&cGame is already running!'
+  Restart: '&cServer is restarting!'
+  InGame: '&cGame is already running!'
+  DeathMatch: '&cGame is already running!'
+
+Stats:
+  Lines:
+  - '&b[]======[] &6&lStats &b[]======[]'
+  - '&6Player: &e%player%'
+  - '&6Kills: &e%kills%'
+  - '&6Deaths: &e%deaths%'
+  - '&6KD/R: &e%kdr%'
+  - '&b[]======[] &6&lStats &b[]======[]'
+
+Messages:
+  MapWin: '%prefix%&aThe Map &e%map% &ahas won with &e%votes% Votes!'
+  Join: '%prefix%&e%player% &ahas joined the game! &8(&e%ingame%&c/&e%max_players%&8)'
+  Quit: '%prefix%&e%player% &chas left the game! &8(&e%ingame%&c/&e%max_players%&8)'
+  NoPermission: '%prefix%&cYou don''t have permission to execute this command!'
+  SetHologram: '%prefix%&aYou have set the Hologram!'
+  SetLobby: '%prefix%&aYou have set the LobbySpawn!'
+  Start: '%prefix%&aThe countdown has set to 15 Seconds!'
+  CreateMap: '%prefix%&aThe Map %map% has been created!'
+  CreateMapFailed: '%prefix%&cA Map with this Name already exists!'
+  ForceMap: '%prefix%&aMap has been forced!'
+  ForceMapNotANumber: '%prefix%&cThis is not a number!'
+  ForceMapAlreadyForced: '%prefix%&cThis Map is already forced!'
+  ForceMapNumberToHigh: '%prefix%&cThis Number is to high!'
+  SetSpawn: '%prefix%&aThe Spawn &e%spawn%&a on the Map &e%map%&a has been set!'
+  SetSpawnNotANumber: '%prefix%&cThis is not a number!'
+  SetSpawnNumberToLowOrToHigh: '%prefix%&cThis Number is to high or low!'
+  VoteHeader: '&b&l[]==========[] &6&lVote &b&l[]==========[]'
+  Vote: '%prefix%&7Vote now with /Vote <MapID>'
+  VoteMapsDesign: '%prefix%&eNo. %no%. %map% Votes: %votes%'
+  VoteNoNumber: '%prefix%&cThis is not a number!'
+  Voted: '%prefix%&aYou have voted for the Map &e%map%&a!'
+  Voted2: '%prefix%&aThis Map has now &e%votes% &aVotes!'
+  VotedAlready: '%prefix%&cYou have voted already!'
+  VoteNumberToHigh: '%prefix%&cThe Number is to high!'
+  VotingClosed: '%prefix%&cThe Voting is Already closed!'
+  VoteFooter: '&b&l[]==========[] &6&lVote &b&l[]==========[]'
+  RemainingPlayers: '%prefix%&cRemaining Players: &e%remaining%'
+  PlayerKilled: '%prefix%&cThe Player &e%player% &cwas killed by &e%killer%&c!'
+  PlayerKilledWordNature: '&cNature'
+  YouKilled: '%prefix%&aYou have killed &e%player%&a!'
+  Win: '%prefix%&aThe Player &e%player% &ahas won!'
+  NoPlayerInRadius: '%prefix%&cNo players in your environment'
+  NearestPlayer: '%prefix%&aNearest Player: &e%player% &8(&e%blocks% &aBlock(s)&8)'
+  Reloaded: '%prefix%&aPlugin reloaded.'
+  MapNotSelected: 'Not selected'
+  YouAreNowSpectator: '%prefix%&cYou are now Spectator.'
+
+Countdown:
+  Lobby:
+    PlayersToStart: 6
+    TimeInSeconds: 120
+    Message: '%prefix%&cThe Lobby ends in &e%seconds% Seconds!'
+    EndMessage: '%prefix%&cThe Lobby was ended!'
+    NotEnoughPlayers: 'Not Enough Players!'
+    Broadcast:
+      ActionBar: true
+      Chat: true
+  WarmUp:
+    TimeInSeconds: 20
+    Message: '%prefix%&aThe Game starts in &e%seconds% Seconds!'
+    EndMessage: '%prefix%&aThe Game has started!'
+    Broadcast:
+      ActionBar: true
+      Chat: true
+  Grace:
+    TimeInSeconds: 60
+    Message: '%prefix%&cThe Grace ends in &e%seconds% Seconds!'
+    EndMessage: '%prefix%&cThe Grace has been ended!'
+    Broadcast:
+      ActionBar: true
+      Chat: true
+  Game:
+    TimeInSeconds: 1200
+    Message: '&cThe Game ends in &e%minutes%&c:&e%seconds% Minutes!'
+    EndMessage: '&cThe Game has been ended!'
+    Broadcast:
+      ActionBar: true
+  DeathMatch:
+    TimeInSeconds: 1200
+    Message: '&cThe DeathMatch starts in &e%seconds% Seconds'
+    EndMessage: '&cThe DeathMatch has been started!'
+    Broadcast:
+      ActionBar: true
+  Restart:
+    TimeInSeconds: 15
+    Message: '%prefix%&cThe Server restarts in &e%seconds% Seconds!'
+    EndMessage: '%prefix%&cThe Server restarts now!'
+    Broadcast:
+      ActionBar: true
+      Chat: true
+
+Scoreboard:
+  Lobby:
+    Title: '&7&m---&6 SurvivalGames &7&m---'
+    Lines:
+    - '&0'
+    - '&6Players: &e%ingame%&7/&e%max_players%'
+    - '&6State: &eLobby'
+    - '&6Map: &e%map%'
+    - '&1'
+    - '&7&m---&6 Maps &7&m---'
+    - '&2'
+    - '%map_listing%'
+    Map_Listing_Design: '&7Map: &e%map% &7- Votes: &e%map_votes%'
+  WarmUp:
+    Title: '&7&m---&6 SurvivalGames &7&m---'
+    Lines:
+    - '&0'
+    - '&6Players: &e%ingame%&7/&e%max_players%'
+    - '&6State: &eWarmUp'
+    - '&6Map: &e%map%'
+    - '&6Starting in &e%seconds% Seconds'
+  Grace:
+    Title: '&7&m---&6 SurvivalGames &7&m---'
+    Lines:
+    - '&0'
+    - '&6Players: &e%ingame%&7/&e%max_players%'
+    - '&6State: &eGrace'
+    - '&6Map: &e%map%'
+    - '&6Ends in &e%seconds% Seconds'
+  InGame:
+    Title: '&7&m---&6 SurvivalGames &7&m---'
+    Lines:
+    - '&0'
+    - '&6Players: &e%ingame%&7/&e%max_players%'
+    - '&6State: &eInGame'
+    - '&6Map: &e%map%'
+    - '&6Ends in: &e%minutes%&c:&e%seconds% Minutes'
+  DeathMatch:
+    Title: '&7&m---&6 SurvivalGames &7&m---'
+    Lines:
+    - '&0'
+    - '&6Players: &e%ingame%&7/&e%max_players%'
+    - '&6State: &eDeathMatch'
+    - '&6Map: &e%map%'
+    - '&6Ends in: &e%minutes%&c:&e%seconds% Minutes'
+    

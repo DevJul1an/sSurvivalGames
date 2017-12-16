@@ -1,0 +1,12 @@
+name: sSurvivalGames
+version: 1.1.5
+author: Jul1an_K
+depend: [Multiverse-Core]
+main: me.jul1an_k.survivalgames.SurvivalGames
+
+
+commands:
+  survivalgames:
+    description: The SurvivalGames Command.
+    usage: /<command>
+    aliases: [sg]
