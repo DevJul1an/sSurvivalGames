@@ -150,45 +150,60 @@ public class Hologram {
 	
 	private Object getPacket(World w, double x, double y, double z, String text) {
 		try {
-			if(TabActionTitle.compareMinecraftVersionServerIsHigherOrEqual("1.8")) {
+			if(TabActionTitle.compareMinecraftVersionServerIsHigherOrEqual("1.12")) {
 				Object craftWorldObj = craftWorld.cast(w);
-				Method getHandleMethod = craftWorldObj.getClass().getMethod("getHandle", new Class<?>[0]);
-				Object entityObject = armorStandConstructor.newInstance(new Object[] { getHandleMethod.invoke(craftWorldObj, new Object[0]) });
-				Method setCustomName = entityObject.getClass().getMethod("setCustomName", new Class<?>[] { String.class });
-				setCustomName.invoke(entityObject, new Object[] { text });
-				Method setCustomNameVisible = nmsEntity.getMethod("setCustomNameVisible", new Class[] { boolean.class });
-				setCustomNameVisible.invoke(entityObject, new Object[] { true });
-				try {
-					Method setGravity = entityObject.getClass().getMethod("setGravity", new Class<?>[] { boolean.class });
-					setGravity.invoke(entityObject, new Object[] { false });
-				} catch(Exception ex) {
-					
-				}
-				Method setLocation = entityObject.getClass().getMethod("setLocation", new Class<?>[] { double.class, double.class, double.class, float.class, float.class });
-				setLocation.invoke(entityObject, new Object[] { x, y, z, 0.0F, 0.0F });
-				Method setInvisible = entityObject.getClass().getMethod("setInvisible", new Class<?>[] { boolean.class });
-				setInvisible.invoke(entityObject, new Object[] { true });
-				Method setSmall = entityObject.getClass().getMethod("setSmall", new Class<?>[] { boolean.class });
-				setSmall.invoke(entityObject, new Object[] { true });
-				Constructor<?> cw = packetClass.getConstructor(new Class<?>[] { entityLivingClass });
-				Object packetObject = cw.newInstance(new Object[] { entityObject });
-				return packetObject;
+				Method getHandleMethod = craftWorldObj.getClass().getMethod("getHandle");
+				Object entityObject = armorStandConstructor.newInstance(getHandleMethod.invoke(craftWorldObj));
+				Method setCustomName = entityObject.getClass().getMethod("setCustomName", String.class);
+				setCustomName.invoke(entityObject, text);
+				Method setCustomNameVisible = nmsEntity.getMethod("setCustomNameVisible", boolean.class);
+				setCustomNameVisible.invoke(entityObject, true);
+				Method setNoGravity = entityObject.getClass().getMethod("setNoGravity", boolean.class);
+				setNoGravity.invoke(entityObject, true);
+				Method setLocation = entityObject.getClass().getMethod("setLocation", double.class, double.class, double.class, float.class, float.class);
+				setLocation.invoke(entityObject, x, y, z, 0.0F, 0.0F);
+				Method setInvisible = entityObject.getClass().getMethod("setInvisible", boolean.class);
+				setInvisible.invoke(entityObject, true);
+				Method setSmall = entityObject.getClass().getMethod("setSmall", boolean.class);
+				setSmall.invoke(entityObject, true);
+				Constructor<?> cw = packetClass.getConstructor(entityLivingClass);
+				return cw.newInstance(entityObject);
+			} else if(TabActionTitle.compareMinecraftVersionServerIsHigherOrEqual("1.8")) {
+				Object craftWorldObj = craftWorld.cast(w);
+				Method getHandleMethod = craftWorldObj.getClass().getMethod("getHandle");
+				Object entityObject = armorStandConstructor.newInstance(getHandleMethod.invoke(craftWorldObj));
+				Method setCustomName = entityObject.getClass().getMethod("setCustomName", String.class);
+				setCustomName.invoke(entityObject, text);
+				Method setCustomNameVisible = nmsEntity.getMethod("setCustomNameVisible", boolean.class);
+				setCustomNameVisible.invoke(entityObject, true);
+				Method setGravity = entityObject.getClass().getMethod("setGravity", boolean.class);
+				setGravity.invoke(entityObject, false);
+				Method setLocation = entityObject.getClass().getMethod("setLocation", double.class, double.class, double.class, float.class, float.class);
+				setLocation.invoke(entityObject, x, y, z, 0.0F, 0.0F);
+				Method setInvisible = entityObject.getClass().getMethod("setInvisible", boolean.class);
+				setInvisible.invoke(entityObject, true);
+				Method setSmall = entityObject.getClass().getMethod("setSmall", boolean.class);
+				setSmall.invoke(entityObject, true);
+				Constructor<?> cw = packetClass.getConstructor(entityLivingClass);
+				return cw.newInstance(entityObject);
 			} else {
 				Object craftWorldObj = craftWorld.cast(w);
-				Method getHandleMethod = craftWorldObj.getClass().getMethod("getHandle", new Class<?>[0]);
-				Object entityObject = horseConstructor.newInstance(new Object[] { getHandleMethod.invoke(craftWorldObj, new Object[0]) });
-				Method setCustomName = entityObject.getClass().getMethod("setCustomName", new Class<?>[] { String.class });
-				setCustomName.invoke(entityObject, new Object[] { text });
-				Method setCustomNameVisible = nmsEntity.getMethod("setCustomNameVisible", new Class[] { boolean.class });
-				setCustomNameVisible.invoke(entityObject, new Object[] { true });
-				Method setLocation = entityObject.getClass().getMethod("setLocation", new Class<?>[] { double.class, double.class, double.class, float.class, float.class });
-				setLocation.invoke(entityObject, new Object[] { x, y, z, 0.0F, 0.0F });
-				Method setInvisible = entityObject.getClass().getMethod("setInvisible", new Class<?>[] { boolean.class });
-				setInvisible.invoke(entityObject, new Object[] { true });
-				Constructor<?> cw = packetClass.getConstructor(new Class<?>[] { entityLivingClass });
-				Object packetObject = cw.newInstance(new Object[] { entityObject });
-				
-				return packetObject;
+				Method getHandleMethod = craftWorldObj.getClass().getMethod("getHandle");
+				Object entityObject = horseConstructor.newInstance(getHandleMethod.invoke(craftWorldObj));
+				Method setCustomName = entityObject.getClass().getMethod("setCustomName", String.class);
+				setCustomName.invoke(entityObject, text);
+				Method setCustomNameVisible = nmsEntity.getMethod("setCustomNameVisible", boolean.class);
+				setCustomNameVisible.invoke(entityObject, true);
+				Method setGravity = entityObject.getClass().getMethod("setGravity", boolean.class);
+				setGravity.invoke(entityObject,false);
+				Method setLocation = entityObject.getClass().getMethod("setLocation", double.class, double.class, double.class, float.class, float.class);
+				setLocation.invoke(entityObject, x, y, z, 0.0F, 0.0F);
+				Method setInvisible = entityObject.getClass().getMethod("setInvisible", boolean.class);
+				setInvisible.invoke(entityObject, true);
+				Method setSmall = entityObject.getClass().getMethod("setSmall", boolean.class);
+				setSmall.invoke(entityObject, true);
+				Constructor<?> cw = packetClass.getConstructor(entityLivingClass);
+				return cw.newInstance(entityObject);
 			}
 		} catch(NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
