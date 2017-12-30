@@ -41,6 +41,7 @@ public class Chest_Listener implements Listener {
 	
 	private void setupInventory(Chest chest) {
 		Inventory inv = chest.getBlockInventory();
+		inv.clear();
 		
 		Random random = new Random();
 		int l = random.nextInt(15);
