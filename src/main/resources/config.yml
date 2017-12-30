@@ -25,6 +25,12 @@ MySQL:
   Password: ''
   
 MapReset: true
+EnableBuilding: true
+
+BreakableBlocks:
+- LEAVES
+- LEAVES_2
+- VINE
 
 BungeeCord:
   fallback_server: 'Lobby'
