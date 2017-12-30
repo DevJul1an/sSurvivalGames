@@ -44,7 +44,7 @@ public class Command_SurvivalGames implements CommandExecutor {
 		} else if(args.length == 1) {
 			if(args[0].equalsIgnoreCase("SetHologram")) {
 				if(!(cs instanceof Player)) {
-					System.err.println(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "Die Konsole kann den Hologram Spawn nicht setzen.");
+					System.err.println("You must be a player.");
 					return true;
 				}
 				if(cs.hasPermission("SurvivalGames.SetHologram")) {
@@ -68,7 +68,7 @@ public class Command_SurvivalGames implements CommandExecutor {
 				}
 			} else if(args[0].equalsIgnoreCase("SetLobby")) {
 				if(!(cs instanceof Player)) {
-					System.err.println(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "Die Konsole kann den Lobby Spawn nicht setzen.");
+					System.err.println("You must be a player.");
 					return true;
 				}
 				if(cs.hasPermission("SurvivalGames.SetLobby")) {
@@ -182,7 +182,7 @@ public class Command_SurvivalGames implements CommandExecutor {
 				}
 			} else if(args[0].equalsIgnoreCase("ForceMap")) {
 				if(cs.hasPermission("SurvivalGames.ForceMap")) {
-					int vote = 0;
+					int vote;
 					if(SurvivalGames.isVoting()) {
 						try {
 							vote = Integer.parseInt(args[1]);
@@ -233,8 +233,7 @@ public class Command_SurvivalGames implements CommandExecutor {
 						
 						try {
 							number = Integer.parseInt(args[2]);
-							if(number > 0 && number < 25) {
-							} else {
+							if(number < 0 || number > 25) {
 								p.sendMessage(mana.getMessage("Messages.SetSpawnNumberToLowOrToHigh"));
 								return true;
 							}
@@ -266,16 +265,16 @@ public class Command_SurvivalGames implements CommandExecutor {
 		return true;
 	}
 	
-	public void sendHelp(CommandSender cs) {
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "�3/SurvivalGames Vote �f- �7Vote for a Map.");
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "�3/SurvivalGames Start �f- �7Starts the Game.");
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "�3/SurvivalGames SetHologram �f- �7Sets the Statshologram.");
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "�3/SurvivalGames SetLobby �f- �7Sets the Lobbyposition.");
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "�3/SurvivalGames CreateMap <Name> �f- �7Creates a Map with the name <Name>.");
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "�3/SurvivalGames ForceMap <ID> �f- �7Forced the Map <ID>.");
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "�3/SurvivalGames SetSpawn <Map> <Spawn> �f- �7Sets Spawn No. <Spawn> In Map <Map>.");
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "�3/SurvivalGames Reload �f- �7Reloads the plugin.");
-		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "�3/SurvivalGames ImportDataToSQL �f- �7Imports the Stats to MySQL");
+	private void sendHelp(CommandSender cs) {
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames Vote §f- §7Vote for a Map.");
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames Start §f- §7Starts the Game.");
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames SetHologram §f- §7Sets the Stats hologram.");
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames SetLobby §f- §7Sets the Lobby position.");
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames CreateMap <Name> §f- §7Creates a Map with the name <Name>.");
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames ForceMap <ID> §f- §7Forced the Map <ID>.");
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames SetSpawn <Map> <Spawn> §f- §7Sets Spawn No. <Spawn> In Map <Map>.");
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames Reload §f- §7Reloads the plugin.");
+		cs.sendMessage(ChatColor.translateAlternateColorCodes('&', mana.getPrefix()) + "§3/SurvivalGames ImportDataToSQL §f- §7Imports the Stats to MySQL");
 	}
 	
 }
