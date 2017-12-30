@@ -128,6 +128,8 @@ public class SurvivalGames extends JavaPlugin {
 			MapReset.stop();
 			MapReset.reset();
 		}
+
+		MySQL.disconnect();
 	}
 	
 	private boolean registerCommands() {

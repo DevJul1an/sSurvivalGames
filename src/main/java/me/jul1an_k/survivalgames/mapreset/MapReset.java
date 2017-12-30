@@ -16,7 +16,7 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 
 public class MapReset {
 	
-	private static List<String> breakedBlocks = new ArrayList<String>();
+	private static List<String> breakedBlocks = new ArrayList<>();
 	
 	private static boolean enabled = false;
 	
@@ -27,8 +27,7 @@ public class MapReset {
 	public static void stop() {
 		enabled = false;
 	}
-	
-	@SuppressWarnings("deprecation")
+
 	public static void reset() {
 		System.out.println("[sSurvivalGames] Resetting " + breakedBlocks.size() + " breaked Blocks!");
 		long start = System.currentTimeMillis();

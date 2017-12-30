@@ -11,15 +11,13 @@ public class MySQL {
 	
 	public static Connection con;
 	
-	public static Connection connect(String host, int port, String database, String user, String password) {
+	public static void connect(String host, int port, String database, String user, String password) {
 		try {
 			con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database + "?autoReconnect=true&serverTimezone=" + TimeZone.getDefault().getID(), user, password);
 			Bukkit.getConsoleSender().sendMessage("§aConnected with MySQL");
 		} catch(SQLException e) {
 			Bukkit.getConsoleSender().sendMessage("§4Error while connecting with MySQL");
 		}
-		
-		return con;
 	}
 	
 	public static void disconnect() {
@@ -32,10 +30,7 @@ public class MySQL {
 	}
 	
 	public static boolean hasConnection() {
-		if(con != null) {
-			return true;
-		}
-		return false;
+		return con != null;
 	}
 	
 }
