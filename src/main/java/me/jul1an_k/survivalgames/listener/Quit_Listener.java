@@ -21,7 +21,7 @@ public class Quit_Listener implements Listener {
 	public void onQuit(PlayerQuitEvent e) {
 		Player p = e.getPlayer();
 		
-		int alives = SurvivalGames.alive.size();
+		int living = SurvivalGames.alive.size();
 		
 		e.setQuitMessage(null);
 		
@@ -38,8 +38,8 @@ public class Quit_Listener implements Listener {
 				Bukkit.broadcastMessage(mana.getMessage("Messages.PlayerKilled").replace("%player%", p.getName()).replace("%killer%", k.getName()));
 				StatsSystem.addDeaths(p, 1);
 				StatsSystem.addKills(k, 1);
-				if(alives >= 2) {
-					Bukkit.broadcastMessage(mana.getMessage("Messages.RemainingPlayers").replace("%remaining%", alives + ""));
+				if(living >= 2) {
+					Bukkit.broadcastMessage(mana.getMessage("Messages.RemainingPlayers").replace("%remaining%", living + ""));
 				}
 				if(SurvivalGames.alive.size() == 1) {
 					String name = SurvivalGames.alive.get(0);
@@ -57,7 +57,7 @@ public class Quit_Listener implements Listener {
 	public void onKick(PlayerKickEvent e) {
 		Player p = e.getPlayer();
 		
-		int alives = SurvivalGames.alive.size();
+		int living = SurvivalGames.alive.size();
 		
 		e.setLeaveMessage(null);
 		
@@ -74,8 +74,8 @@ public class Quit_Listener implements Listener {
 				Bukkit.broadcastMessage(mana.getMessage("Messages.PlayerKilled").replace("%player%", p.getName()).replace("%killer%", k.getName()));
 				StatsSystem.addDeaths(p, 1);
 				StatsSystem.addKills(k, 1);
-				if(alives >= 2) {
-					Bukkit.broadcastMessage(mana.getMessage("Messages.RemainingPlayers").replace("%remaining%", alives + ""));
+				if(living >= 2) {
+					Bukkit.broadcastMessage(mana.getMessage("Messages.RemainingPlayers").replace("%remaining%", living + ""));
 				}
 				
 				if(SurvivalGames.alive.size() == 1) {

@@ -45,7 +45,7 @@ public class Join_Listener implements Listener {
 		final File f = new File("plugins/sSurvivalGames", "location.yml");
 		final FileConfiguration fc = YamlConfiguration.loadConfiguration(f);
 		Location loc = new Location(Bukkit.getWorld(fc.getString("Hologram.World")), fc.getDouble("Hologram.X"), fc.getDouble("Hologram.Y"), fc.getDouble("Hologram.Z"));
-		List<String> hololines = new ArrayList<String>();
+		List<String> holoLines = new ArrayList<>();
 		for(String line : mana.getMessages("Stats.Lines")) {
 			int kills = StatsSystem.getKills(p);
 			int deaths = StatsSystem.getDeaths(p);
@@ -57,24 +57,20 @@ public class Join_Listener implements Listener {
 			new_line = new_line.replace("%kills%", kills + "");
 			new_line = new_line.replace("%deaths%", deaths + "");
 			new_line = new_line.replace("%kdr%", kdr + "");
-			hololines.add(new_line);
+			holoLines.add(new_line);
 		}
-		Hologram h = new Hologram(loc, hololines);
+		Hologram h = new Hologram(loc, holoLines);
 		h.display(p);
 		
 		for(Player all : Bukkit.getOnlinePlayers()) {
-			all.showPlayer(p);
-			p.showPlayer(all);
+			all.showPlayer(SurvivalGames.getInstance(), p);
+			p.showPlayer(SurvivalGames.getInstance(), all);
 		}
 		
 		if(SurvivalGames.getStatus() == GameState.LOBBY) {
 			e.setJoinMessage(mana.getMessage("Messages.Join").replace("%player%", p.getName()).replace("%ingame%", Bukkit.getOnlinePlayers().size() + "").replace("%max_players%", Bukkit.getMaxPlayers() + ""));
 			
-			Bukkit.getScheduler().scheduleSyncDelayedTask(SurvivalGames.getInstance(), new Runnable() {
-				public void run() {
-					p.teleport(new Location(Bukkit.getWorld(fc.getString("Lobby.World")), fc.getDouble("Lobby.X"), fc.getDouble("Lobby.Y"), fc.getDouble("Lobby.Z"), (float) fc.getDouble("Lobby.Yaw"), (float) fc.getDouble("Lobby.Pitch")));
-				}
-			}, 1L);
+			Bukkit.getScheduler().scheduleSyncDelayedTask(SurvivalGames.getInstance(), () -> p.teleport(new Location(Bukkit.getWorld(fc.getString("Lobby.World")), fc.getDouble("Lobby.X"), fc.getDouble("Lobby.Y"), fc.getDouble("Lobby.Z"), (float) fc.getDouble("Lobby.Yaw"), (float) fc.getDouble("Lobby.Pitch"))), 1L);
 			
 			LobbyScoreboard.hide(p);
 			
@@ -108,17 +104,14 @@ public class Join_Listener implements Listener {
 			p.setFlying(true);
 			for(Player all : Bukkit.getOnlinePlayers()) {
 				if(all != p) {
-					all.hidePlayer(p);
+					all.hidePlayer(SurvivalGames.getInstance(), p);
 				}
 			}
-			p.sendMessage("§b[§6SurvivalGames§b] §aDu bist jetzt Spectator");
+
+			p.sendMessage(mana.getMessage("YouAreNowSpectator"));
 			
 			// Spectator
-			Bukkit.getScheduler().scheduleSyncDelayedTask(SurvivalGames.getInstance(), new Runnable() {
-				public void run() {
-					p.teleport(new Location(Bukkit.getWorld(fc.getString("Spectator.World")), fc.getDouble("Spectator.X"), fc.getDouble("Spectator.Y"), fc.getDouble("Spectator.Z"), (float) fc.getDouble("Spectator.Yaw"), (float) fc.getDouble("Spectator.Pitch")));
-				}
-			}, 1L);
+			Bukkit.getScheduler().scheduleSyncDelayedTask(SurvivalGames.getInstance(), () -> p.teleport(new Location(Bukkit.getWorld(fc.getString("Spectator.World")), fc.getDouble("Spectator.X"), fc.getDouble("Spectator.Y"), fc.getDouble("Spectator.Z"), (float) fc.getDouble("Spectator.Yaw"), (float) fc.getDouble("Spectator.Pitch"))), 1L);
 		}
 	}
 	

@@ -39,9 +39,7 @@ public class Chest_Listener implements Listener {
 		}
 	}
 	
-	public void setupInventory(Chest chest) {
-		// Inventory inv = Bukkit.createInventory(null, 27,
-		// mana.getMessage("Chest.Title"));
+	private void setupInventory(Chest chest) {
 		Inventory inv = chest.getBlockInventory();
 		
 		Random random = new Random();

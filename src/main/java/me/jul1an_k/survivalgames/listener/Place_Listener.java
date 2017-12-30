@@ -18,11 +18,8 @@ public class Place_Listener implements Listener {
 		}
 		
 		Player p = e.getPlayer();
-		if(p.hasPermission("SG.PlaceBlock") | e.getBlock().getType() == Material.MELON_BLOCK) {
-			e.setCancelled(false);
-		} else {
-			e.setCancelled(true);
-		}
+
+		e.setCancelled(p.hasPermission("SG.PlaceBlock") | e.getBlock().getType() == Material.MELON_BLOCK);
 	}
 	
 }

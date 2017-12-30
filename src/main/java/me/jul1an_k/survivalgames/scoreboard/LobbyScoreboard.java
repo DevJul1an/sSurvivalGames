@@ -22,7 +22,7 @@ public class LobbyScoreboard {
 		currentScore--;
 	}
 
-	private static void show(Player p) {
+	public static void show(Player p) {
 		currentScore = 0;
 		Scoreboard board = Bukkit.getScoreboardManager().getMainScoreboard();
 		Objective obj = board.getObjective("sgboard") != null ? board.getObjective("sgboard") : board.registerNewObjective("sgboard", "sgboard");

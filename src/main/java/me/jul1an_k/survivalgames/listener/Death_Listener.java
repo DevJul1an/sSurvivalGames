@@ -18,8 +18,7 @@ public class Death_Listener implements Listener {
 	
 	@EventHandler
 	public void onDeath(PlayerDeathEvent e) {
-		
-		int alives = 0;
+		int living = 0;
 		
 		e.setDeathMessage(null);
 		if(SurvivalGames.getStatus() == GameState.INGAME || SurvivalGames.getStatus() == GameState.DEATHMATCH) {
@@ -28,10 +27,10 @@ public class Death_Listener implements Listener {
 			if(SurvivalGames.alive.contains(d.getName())) {
 				SurvivalGames.alive.remove(d.getName());
 			}
-			
-			if(d.getKiller() instanceof Player) {
+
+			if(d.getKiller() != null) {
 				Player k = d.getKiller();
-				alives = SurvivalGames.alive.size();
+				living = SurvivalGames.alive.size();
 				k.sendMessage(mana.getMessage("Messages.YouKilled").replace("%player%", d.getName()));
 				Bukkit.broadcastMessage(mana.getMessage("Messages.PlayerKilled").replace("%player%", d.getName()).replace("%killer%", k.getName()));
 				StatsSystem.addDeaths(d, 1);
@@ -40,11 +39,11 @@ public class Death_Listener implements Listener {
 				Bukkit.broadcastMessage(mana.getMessage("Messages.PlayerKilled").replace("%player%", d.getName()).replace("%killer%", mana.getMessage("Messages.PlayerKilledWordNature")));
 			}
 			
-			if(alives >= 2) {
-				Bukkit.broadcastMessage(mana.getMessage("Messages.RemainingPlayers").replace("%remaining%", alives + ""));
+			if(living >= 2) {
+				Bukkit.broadcastMessage(mana.getMessage("Messages.RemainingPlayers").replace("%remaining%", living + ""));
 			}
 			
-			if(alives <= 4) {
+			if(living <= 4) {
 				// TODO DeathMatch
 			}
 			

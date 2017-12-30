@@ -20,9 +20,9 @@ public class Chat_Listener implements Listener {
 			msg = ChatColor.translateAlternateColorCodes('&', msg);
 		}
 		if(p.isOp()) {
-			e.setFormat("§a" + p.getDisplayName() + "§7 » §f" + msg);
+			e.setFormat("Â§a" + p.getDisplayName() + "Â§7 Â» Â§f" + msg);
 		} else {
-			e.setFormat("§7" + p.getDisplayName() + "§7 » §f" + msg);
+			e.setFormat("Â§7" + p.getDisplayName() + "Â§7 Â» Â§f" + msg);
 		}
 	}
 	
