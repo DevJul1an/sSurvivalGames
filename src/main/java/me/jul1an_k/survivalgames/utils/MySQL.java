@@ -14,9 +14,9 @@ public class MySQL {
 	public static Connection connect(String host, int port, String database, String user, String password) {
 		try {
 			con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database + "?autoReconnect=true&serverTimezone=" + TimeZone.getDefault().getID(), user, password);
-			Bukkit.getConsoleSender().sendMessage("§aConnected with MySQL");
+			Bukkit.getConsoleSender().sendMessage("Â§aConnected with MySQL");
 		} catch(SQLException e) {
-			Bukkit.getConsoleSender().sendMessage("§4Error while connecting with MySQL");
+			Bukkit.getConsoleSender().sendMessage("Â§4Error while connecting with MySQL");
 		}
 		
 		return con;
@@ -25,7 +25,7 @@ public class MySQL {
 	public static void disconnect() {
 		try {
 			con.close();
-			Bukkit.getConsoleSender().sendMessage("§aDisconnected from MySQL");
+			Bukkit.getConsoleSender().sendMessage("Â§aDisconnected from MySQL");
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
