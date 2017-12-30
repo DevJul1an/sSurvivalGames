@@ -21,30 +21,14 @@ public class InGameScoreboard {
 		obj.getScore(name).setScore(currentScore);
 		currentScore--;
 	}
-	
-	public static void show(Player p) {
+
+	private static void show(Player p) {
 		currentScore = 0;
 		Scoreboard board = Bukkit.getScoreboardManager().getMainScoreboard();
 		Objective obj = board.getObjective("sgboard") != null ? board.getObjective("sgboard") : board.registerNewObjective("sgboard", "sgboard");
 		
 		obj.setDisplayName(mana.getMessage("Scoreboard.InGame.Title"));
 		obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-		
-		// addScore(obj, "§0");
-		// addScore(obj, "§6Spieler: §e" + SurvivalGames.alive.size() + "§7/§e"
-		// + Bukkit.getMaxPlayers());
-		// addScore(obj, "§6Status: §eInGame");
-		// if(SurvivalGames.winMap == null) {
-		// addScore(obj, "§6Map: §eVoting");
-		// } else {
-		// addScore(obj, "§6Map: §e" + SurvivalGames.winMap.getName());
-		// }
-		// if(sek < 10) {
-		// addScore(obj, "§6Endet in: §e" + min + "§c:§e0" + sek + " Minuten");
-		// } else {
-		// addScore(obj, "§6Endet in: §e" + min + "§c:§e" + sek + " Minuten");
-		// }
-		// addScore(obj, "§3");
 		
 		double counterd = Countdown_Game.counter;
 		int min = (int) counterd / 60;

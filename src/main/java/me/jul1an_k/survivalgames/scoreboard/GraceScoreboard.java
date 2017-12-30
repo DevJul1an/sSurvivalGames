@@ -21,8 +21,8 @@ public class GraceScoreboard {
 		obj.getScore(name).setScore(currentScore);
 		currentScore--;
 	}
-	
-	public static void show(Player p) {
+
+	private static void show(Player p) {
 		currentScore = 0;
 		Scoreboard board = Bukkit.getScoreboardManager().getMainScoreboard();
 		Objective obj = board.getObjective("sgboard") != null ? board.getObjective("sgboard") : board.registerNewObjective("sgboard", "sgboard");

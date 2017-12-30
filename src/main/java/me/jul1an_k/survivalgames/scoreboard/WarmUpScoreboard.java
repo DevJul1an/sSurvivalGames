@@ -21,27 +21,15 @@ public class WarmUpScoreboard {
 		obj.getScore(name).setScore(currentScore);
 		currentScore--;
 	}
-	
-	public static void show(Player p) {
+
+	private static void show(Player p) {
 		currentScore = 0;
 		Scoreboard board = Bukkit.getScoreboardManager().getMainScoreboard();
 		Objective obj = board.getObjective("sgboard") != null ? board.getObjective("sgboard") : board.registerNewObjective("sgboard", "sgboard");
 		
 		obj.setDisplayName(mana.getMessage("Scoreboard.WarmUp.Title"));
 		obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-		
-		// addScore(obj, "§0");
-		// addScore(obj, "§6Spieler: §e" + SurvivalGames.alive.size() + "§7/§e"
-		// + Bukkit.getMaxPlayers());
-		// addScore(obj, "§6Status: §eWarmUp");
-		// if(SurvivalGames.winMap == null) {
-		// addScore(obj, "§6Map: §eFehler");
-		// } else {
-		// addScore(obj, "§6Map: §e" + SurvivalGames.winMap.getName());
-		// }
-		// addScore(obj, "§6Startet in: §e" + WarmUp.WarmUp + " Sekunden");
-		// addScore(obj, "§3");
-		
+
 		for(String s : mana.getMessages("Scoreboard.WarmUp.Lines")) {
 			addScore(obj, ChatColor.translateAlternateColorCodes('&', s).replace("%ingame%", SurvivalGames.alive.size() + "").replace("%max_players%", Bukkit.getMaxPlayers() + "").replace("%map%", SurvivalGames.getWinMap().getName()).replace("%seconds%", Countdown_WarmUp.WarmUp + ""));
 		}

@@ -22,29 +22,13 @@ public class DeathMatchScoreboard {
 		currentScore--;
 	}
 	
-	public static void show(Player p) {
+	private static void show(Player p) {
 		currentScore = 0;
 		Scoreboard board = Bukkit.getScoreboardManager().getMainScoreboard();
 		Objective obj = board.getObjective("sgboard") != null ? board.getObjective("sgboard") : board.registerNewObjective("sgboard", "sgboard");
 		
 		obj.setDisplayName(mana.getMessage("Scoreboard.DeathMatch.Title"));
 		obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-		
-		// addScore(obj, "§0");
-		// addScore(obj, "§6Spieler: §e" + SurvivalGames.alive.size() + "§7/§e"
-		// + Bukkit.getMaxPlayers());
-		// addScore(obj, "§6Status: §eDeathMatch");
-		// if(SurvivalGames.winMap == null) {
-		// addScore(obj, "§6Map: §eVoting");
-		// } else {
-		// addScore(obj, "§6Map: §e" + SurvivalGames.winMap.getName());
-		// }
-		// if(sek < 10) {
-		// addScore(obj, "§6Endet in: §e" + min + "§c:§e0" + sek + " Minuten");
-		// } else {
-		// addScore(obj, "§6Endet in: §e" + min + "§c:§e" + sek + " Minuten");
-		// }
-		// addScore(obj, "§3");
 		
 		int min = (int) Countdown_DeathMatch.counter / 60;
 		int sek = (int) Countdown_DeathMatch.counter - min * 60;
