@@ -10,7 +10,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import me.jul1an_k.survivalgames.SurvivalGames;
 import me.jul1an_k.survivalgames.commands.Command_SurvivalGames;
 import me.jul1an_k.survivalgames.scoreboard.LobbyScoreboard;
-import me.jul1an_k.survivalgames.utils.Map;
+import me.jul1an_k.survivalgames.utils.Voting_Map;
 import me.jul1an_k.survivalgames.utils.manager.MessageManager;
 
 public class InventoryClick_Listener implements Listener {
@@ -24,7 +24,7 @@ public class InventoryClick_Listener implements Listener {
 			
 			e.setCancelled(true);
 			
-			for(Map map : SurvivalGames.getMaps()) {
+			for(Voting_Map map : SurvivalGames.getMaps()) {
 				if(map.getName().equalsIgnoreCase(name)) {
 					map.addVote();
 				}

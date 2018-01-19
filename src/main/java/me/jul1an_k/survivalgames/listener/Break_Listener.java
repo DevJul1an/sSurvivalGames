@@ -17,15 +17,15 @@ public class Break_Listener implements Listener {
 
 	@EventHandler
 	public void onBreak(BlockBreakEvent e) {
-		if(!SurvivalGames.getMessageManager().getBoolean("EnableBuilding")) {
+		if (!SurvivalGames.getMessageManager().getBoolean("EnableBuilding")) {
 			e.setCancelled(true);
 			return;
 		}
 
 		List<String> allowedToBreak = mana.getMessages("BreakableBlocks");
 
-		if(SurvivalGames.getStatus() == GameState.INGAME | SurvivalGames.getStatus() == GameState.GRACE | e.getPlayer().hasPermission("SG.BreakBlock")) {
-			if(allowedToBreak.contains(e.getBlock().getType().name()) | e.getPlayer().hasPermission("SG.BreakBlock")) {
+		if (SurvivalGames.getStatus() == GameState.INGAME | SurvivalGames.getStatus() == GameState.GRACE | e.getPlayer().hasPermission("SG.BreakBlock")) {
+			if (allowedToBreak.contains(e.getBlock().getType().name()) | e.getPlayer().hasPermission("SG.BreakBlock")) {
 				e.setCancelled(false);
 			} else {
 				e.setCancelled(true);
@@ -34,5 +34,5 @@ public class Break_Listener implements Listener {
 			e.setCancelled(true);
 		}
 	}
-	
+
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import me.jul1an_k.survivalgames.SurvivalGames;
-import me.jul1an_k.survivalgames.utils.Map;
+import me.jul1an_k.survivalgames.utils.Voting_Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -35,23 +35,26 @@ public class VoteManager {
 				Location location = new Location(w, x, y, z, yaw, pitch);
 				loclist.add(location);
 			}
-			Map m = new Map(arena, loclist);
+			Voting_Map m = new Voting_Map(arena, loclist);
 			SurvivalGames.addMap(m);
 			System.out.println("[sSurvivalGames] Map " + arena + " added (" + loclist.size() + " Spawns)");
 		}
 	}
 	
 	public static void endVote() {
-		List<Map> maps = SurvivalGames.getMaps();
-		Map m = null;
+		List<Voting_Map> maps = SurvivalGames.getMaps();
+		Voting_Map m = null;
 		int votes = -1;
-		for(Map map : maps) {
+
+		for(Voting_Map map : maps) {
 			if(map.getVotes() > votes) {
 				votes = map.getVotes();
 			}
 		}
-		List<Map> ms = new ArrayList<Map>();
-		for(Map map : maps) {
+
+		List<Voting_Map> ms = new ArrayList<>();
+
+		for(Voting_Map map : maps) {
 			if(map.getVotes() == votes) {
 				ms.add(map);
 			}
@@ -65,9 +68,7 @@ public class VoteManager {
 			m = ms.get(gn);
 		}
 		
-		if(m != null) {
-			SurvivalGames.setWinMap(m);
-		}
+		if(m != null) SurvivalGames.setWinMap(m);
 	}
 	
 }

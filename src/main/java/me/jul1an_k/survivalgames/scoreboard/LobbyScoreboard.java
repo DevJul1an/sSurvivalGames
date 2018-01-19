@@ -8,7 +8,7 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
 import me.jul1an_k.survivalgames.SurvivalGames;
-import me.jul1an_k.survivalgames.utils.Map;
+import me.jul1an_k.survivalgames.utils.Voting_Map;
 import me.jul1an_k.survivalgames.utils.manager.MessageManager;
 
 public class LobbyScoreboard {
@@ -32,7 +32,7 @@ public class LobbyScoreboard {
 		
 		for(String s : mana.getMessages("Scoreboard.Lobby.Lines")) {
 			if(s.equalsIgnoreCase("%map_listing%")) {
-				for(Map m : SurvivalGames.getMaps()) {
+				for(Voting_Map m : SurvivalGames.getMaps()) {
 					addScore(obj, ChatColor.translateAlternateColorCodes('&', mana.getMessage("Scoreboard.Lobby.Map_Listing_Design")).replace("%map%", m.getName()).replace("%map_votes%", m.getVotes() + ""));
 				}
 				continue;

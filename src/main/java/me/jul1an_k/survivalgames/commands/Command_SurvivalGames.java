@@ -26,7 +26,7 @@ import me.jul1an_k.survivalgames.SurvivalGames;
 import me.jul1an_k.survivalgames.countdown.Countdown_Lobby;
 import me.jul1an_k.survivalgames.update.FileUpdate;
 import me.jul1an_k.survivalgames.utils.ItemStackBuilder;
-import me.jul1an_k.survivalgames.utils.Map;
+import me.jul1an_k.survivalgames.utils.Voting_Map;
 import me.jul1an_k.survivalgames.utils.MySQL;
 import me.jul1an_k.survivalgames.utils.PluginReloader;
 import me.jul1an_k.survivalgames.utils.manager.ConsoleManger;
@@ -152,7 +152,7 @@ public class Command_SurvivalGames implements CommandExecutor {
 				
 				Inventory inv = Bukkit.createInventory(null, 9, mana.getMessage("Vote.InventoryName"));
 				
-				for(Map m : SurvivalGames.getMaps()) {
+				for(Voting_Map m : SurvivalGames.getMaps()) {
 					inv.addItem(ItemStackBuilder.builder().material(Material.MAP).displayname("§c" + m.getName()).lore("§6Votes: §c" + m.getVotes()).build());
 				}
 				
@@ -194,7 +194,7 @@ public class Command_SurvivalGames implements CommandExecutor {
 						
 						if(vote > 0 && vote <= SurvivalGames.getMaps().size()) {
 							vote--;
-							Map m = SurvivalGames.getMaps().get(vote);
+							Voting_Map m = SurvivalGames.getMaps().get(vote);
 							if(m.getVotes() >= 999) {
 								cs.sendMessage(mana.getMessage("Messages.ForceMapAlreadyForced"));
 								return true;

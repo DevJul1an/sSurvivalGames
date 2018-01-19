@@ -1,6 +1,5 @@
 package me.jul1an_k.survivalgames.utils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -9,13 +8,13 @@ import org.bukkit.entity.Player;
 
 import me.jul1an_k.survivalgames.SurvivalGames;
 
-public class Map {
+public class Voting_Map {
 	
-	private List<Location> locations = new ArrayList<Location>();
+	private List<Location> locations;
 	private String name;
 	private int vote;
 	
-	public Map(String name, List<Location> locations) {
+	public Voting_Map(String name, List<Location> locations) {
 		this.locations = locations;
 		this.name = name;
 		vote = 0;

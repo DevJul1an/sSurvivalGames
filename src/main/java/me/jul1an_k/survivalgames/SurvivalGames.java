@@ -5,7 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import me.jul1an_k.survivalgames.utils.Voting_Map;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -37,7 +39,6 @@ import me.jul1an_k.survivalgames.mapreset.MapReset.MapResetListener;
 import me.jul1an_k.survivalgames.scoreboard.LobbyScoreboard;
 import me.jul1an_k.survivalgames.update.FileUpdate;
 import me.jul1an_k.survivalgames.utils.GameState;
-import me.jul1an_k.survivalgames.utils.Map;
 import me.jul1an_k.survivalgames.utils.MySQL;
 import me.jul1an_k.survivalgames.utils.manager.ChestManager;
 import me.jul1an_k.survivalgames.utils.manager.ConfigManager;
@@ -58,15 +59,15 @@ public class SurvivalGames extends JavaPlugin {
 	
 	@Getter @Setter private static boolean voting;
 	
-	@Getter @Setter private static Map winMap;
+	@Getter @Setter private static Voting_Map winMap;
 	
-	@Getter private static List<Map> maps = new ArrayList<>();
+	@Getter private static List<Voting_Map> maps = new ArrayList<>();
 	
 	public static List<String> alive = new ArrayList<>();
 	
-	public static HashMap<String, Location> locs = new HashMap<>();
+	public static Map<String, Location> locs = new HashMap<>();
 	
-	public static HashMap<Player, Player> lastdamage = new HashMap<>();
+	public static Map<Player, Player> lastdamage = new HashMap<>();
 	
 	public void onLoad() {
 		instance = this;
@@ -159,7 +160,7 @@ public class SurvivalGames extends JavaPlugin {
 		return true;
 	}
 	
-	public static void addMap(Map m) {
+	public static void addMap(Voting_Map m) {
 		maps.add(m);
 	}
 	
