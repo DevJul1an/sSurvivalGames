@@ -79,49 +79,44 @@ public class FileUpdate {
 	}
 	
 	public boolean downloadUpdate(final CommandSender sender) {
-		String path = null;
-		
-		path = getLink();
+		String path = getLink();
 		
 		boolean success = false;
 		String pluginPath = "plugins/" + SurvivalGames.getInstance().getDescription().getName() + ".jar";
-		
-		if(path != null) {
-			try {
-				URL site = new URL(path);
-				URLConnection conn = site.openConnection();
-				conn.addRequestProperty("User-Agent", "Chrome/52.0");
-				
-				InputStream is = new BufferedInputStream(conn.getInputStream());
-				OutputStream os = new BufferedOutputStream(new FileOutputStream(pluginPath));
-				
-				byte[] chunk = new byte[1024];
-				int chunkSize;
-				int count = -1;
-				while((chunkSize = is.read(chunk)) != -1) {
-					os.write(chunk, 0, chunkSize);
-					count++;
-				}
-				os.flush(); // Necessary for Java < 6
-				os.close();
-				is.close();
-				
-				sender.sendMessage(ChatColor.GREEN + "Downloading...");
-				
-				sender.sendMessage(ChatColor.GREEN + "Plugin downloaded! (" + count / 1024 + "KB)");
-				sender.sendMessage(ChatColor.GREEN + "Reloading plugin...");
-				
-				reload();
-				
-				sender.sendMessage(ChatColor.GREEN + "Update successfully.");
-				success = true;
-				
-			} catch(Exception e) {
-				sender.sendMessage(ChatColor.RED + "Failed to update: " + e.getMessage());
-			}
-			
-		}
-		
+
+		try {
+            URL site = new URL(path);
+            URLConnection conn = site.openConnection();
+            conn.addRequestProperty("User-Agent", "Chrome/52.0");
+
+            InputStream is = new BufferedInputStream(conn.getInputStream());
+            OutputStream os = new BufferedOutputStream(new FileOutputStream(pluginPath));
+
+            byte[] chunk = new byte[1024];
+            int chunkSize;
+            int count = -1;
+            while((chunkSize = is.read(chunk)) != -1) {
+                os.write(chunk, 0, chunkSize);
+                count++;
+            }
+            os.flush(); // Necessary for Java < 6
+            os.close();
+            is.close();
+
+            sender.sendMessage(ChatColor.GREEN + "Downloading...");
+
+            sender.sendMessage(ChatColor.GREEN + "Plugin downloaded! (" + count / 1024 + "KB)");
+            sender.sendMessage(ChatColor.GREEN + "Reloading plugin...");
+
+            reload();
+
+            sender.sendMessage(ChatColor.GREEN + "Update successfully.");
+            success = true;
+
+        } catch(Exception e) {
+            sender.sendMessage(ChatColor.RED + "Failed to update: " + e.getMessage());
+        }
+
 		return success;
 	}
 	
