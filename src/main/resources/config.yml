@@ -29,6 +29,9 @@ MySQL:
 MapReset: true
 EnableBuilding: true
 
+AutoUpdater:
+  Enable: false
+
 BreakableBlocks:
 - LEAVES
 - LEAVES_2

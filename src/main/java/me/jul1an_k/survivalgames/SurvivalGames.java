@@ -113,8 +113,10 @@ public class SurvivalGames extends JavaPlugin {
 			LobbyScoreboard.update(all);
 		}
 		
-		FileUpdate fu = new FileUpdate();
-		fu.check();
+		if(cfg.getBoolean("AutoUpdater.Enable")) {
+            FileUpdate fu = new FileUpdate();
+            fu.check();
+        }
 	}
 	
 	public void onDisable() {
