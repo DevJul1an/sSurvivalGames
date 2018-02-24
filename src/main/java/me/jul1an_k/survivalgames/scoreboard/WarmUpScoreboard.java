@@ -31,7 +31,7 @@ public class WarmUpScoreboard {
 		obj.setDisplaySlot(DisplaySlot.SIDEBAR);
 
 		for(String s : mana.getMessages("Scoreboard.WarmUp.Lines")) {
-			addScore(obj, ChatColor.translateAlternateColorCodes('&', s).replace("%ingame%", SurvivalGames.alive.size() + "").replace("%max_players%", Bukkit.getMaxPlayers() + "").replace("%map%", SurvivalGames.getWinMap().getName()).replace("%seconds%", Countdown_WarmUp.WarmUp + ""));
+			addScore(obj, ChatColor.translateAlternateColorCodes('&', s).replace("%ingame%", SurvivalGames.alive.size() + "").replace("%max_players%", Bukkit.getMaxPlayers() + "").replace("%map%", SurvivalGames.getWinMap().getName()).replace("%seconds%", Countdown_WarmUp.warmUp + ""));
 		}
 		
 		p.setScoreboard(board);

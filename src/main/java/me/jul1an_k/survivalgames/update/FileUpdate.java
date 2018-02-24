@@ -44,17 +44,17 @@ public class FileUpdate {
 				System.out.println("[sSurvivalGames-AutoUpdater] New in this version: " + changesString);
 				for(Player all : Bukkit.getOnlinePlayers()) {
 					if(all.hasPermission("sSurvivalGames.Update")) {
-						all.sendMessage("§aAn Update for sSurvivalGames is available!");
-						all.sendMessage("§cCurrent Version: " + oldVersion);
-						all.sendMessage("§2New Version: " + newVersion);
-						all.sendMessage("§3New in this version: " + changesString);
-						all.sendMessage("§aDownloading update...");
+						all.sendMessage("Â§aAn Update for sSurvivalGames is available!");
+						all.sendMessage("Â§cCurrent Version: " + oldVersion);
+						all.sendMessage("Â§2New Version: " + newVersion);
+						all.sendMessage("Â§3New in this version: " + changesString);
+						all.sendMessage("Â§aDownloading update...");
 					}
 				}
 				downloadUpdate(Bukkit.getConsoleSender());
 				for(Player all : Bukkit.getOnlinePlayers()) {
 					if(all.hasPermission("sSurvivalGames.Update")) {
-						all.sendMessage("§aDownloaded update!");
+						all.sendMessage("Â§aDownloaded update!");
 					}
 				}
 			}

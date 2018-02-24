@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 public class Countdown_WarmUp extends Countdown {
 	
-	private static int warmUp = mana.getInteger("Countdown.WarmUp.TimeInSeconds") + 1;
+	public static int warmUp = mana.getInteger("Countdown.WarmUp.TimeInSeconds") + 1;
 	
 	public void start() {
 		if(SurvivalGames.getStatus() == GameState.WARMUP) {
