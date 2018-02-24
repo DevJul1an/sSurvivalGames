@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -36,7 +34,7 @@ public class Command_SurvivalGames implements CommandExecutor {
 	
 	private MessageManager mana = SurvivalGames.getMessageManager();
 	
-	public static List<UUID> voted = new ArrayList<>();
+	public static Collection<UUID> voted = new HashSet<>();
 	
 	public boolean onCommand(CommandSender cs, Command cmd, String label, String[] args) {
 		if(args.length == 0) {
@@ -94,8 +92,8 @@ public class Command_SurvivalGames implements CommandExecutor {
 				}
 			} else if(args[0].equalsIgnoreCase("Start")) {
 				if(cs.hasPermission("SurvivalGames.Start")) {
-					if(Bukkit.getOnlinePlayers().size() >= 2 && Countdown_Lobby.LobbyCounter > -1) {
-						Countdown_Lobby.LobbyCounter = 16;
+					if(Bukkit.getOnlinePlayers().size() >= 2 && Countdown_Lobby.lobbyCounter > -1) {
+						Countdown_Lobby.lobbyCounter = 16;
 						cs.sendMessage(mana.getMessage("Messages.Start"));
 					}
 				} else {

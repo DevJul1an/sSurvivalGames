@@ -36,7 +36,7 @@ public class Voting_Map {
 		int i = 0;
 		for(Player all : Bukkit.getOnlinePlayers()) {
 			all.teleport(locations.get(i));
-			SurvivalGames.locs.put(all.getName(), locations.get(i));
+			SurvivalGames.locs.put(all.getUniqueId(), locations.get(i));
 			i++;
 		}
 	}
@@ -46,11 +46,11 @@ public class Voting_Map {
 		
 		int i = 0;
 		for(Player all : Bukkit.getOnlinePlayers()) {
-			if(!SurvivalGames.alive.contains(all.getName()))
+			if(!SurvivalGames.alive.contains(all.getUniqueId()))
 				continue;
 			
 			all.teleport(locations.get(i));
-			SurvivalGames.locs.put(all.getName(), locations.get(i));
+			SurvivalGames.locs.put(all.getUniqueId(), locations.get(i));
 			i++;
 		}
 	}

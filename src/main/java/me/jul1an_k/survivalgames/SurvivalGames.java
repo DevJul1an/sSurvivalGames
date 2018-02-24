@@ -2,10 +2,7 @@ package me.jul1an_k.survivalgames;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import me.jul1an_k.survivalgames.utils.Voting_Map;
 import org.bukkit.Bukkit;
@@ -63,9 +60,9 @@ public class SurvivalGames extends JavaPlugin {
 	
 	@Getter private static List<Voting_Map> maps = new ArrayList<>();
 	
-	public static List<String> alive = new ArrayList<>();
+	public static List<UUID> alive = new ArrayList<>();
 	
-	public static Map<String, Location> locs = new HashMap<>();
+	public static Map<UUID, Location> locs = new HashMap<>();
 	
 	public static Map<Player, Player> lastdamage = new HashMap<>();
 	
@@ -74,7 +71,7 @@ public class SurvivalGames extends JavaPlugin {
 	}
 	
 	public void onEnable() {
-		// === INSTANZEN === \\
+		// === INSTANCES === \\
 		
 		saveDefaultConfig();
 		cfg = ConfigManager.getFileConfiguration();
@@ -84,7 +81,7 @@ public class SurvivalGames extends JavaPlugin {
 		messageManager = new MessageManager();
 		ConfigManager.load();
 		
-		// === LADEN (REGISTRIEREN ETC) === \\
+		// === LOAD (REGISTER STUFF ETC) === \\
 		
 		Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		new Countdown_Lobby().start();

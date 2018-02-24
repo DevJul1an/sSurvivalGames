@@ -8,10 +8,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -19,8 +16,8 @@ import org.bukkit.entity.Player;
 
 public class Hologram {
 	
-	private List<Object> destroyCache;
-	private List<Object> spawnCache;
+	private Collection<Object> destroyCache;
+	private Collection<Object> spawnCache;
 	private List<UUID> players;
 	private List<String> lines;
 	private Location loc;
@@ -56,8 +53,8 @@ public class Hologram {
 			craftWorld = getCBClass("CraftWorld");
 			packetClass = getNMSClass("PacketPlayOutSpawnEntityLiving");
 			entityLivingClass = getNMSClass("EntityLiving");
-			armorStandConstructor = armorStand.getConstructor(new Class[] { worldClass });
-			horseConstructor = horse.getConstructor(new Class[] { worldClass });
+			armorStandConstructor = armorStand.getConstructor(worldClass);
+			horseConstructor = horse.getConstructor(worldClass);
 			
 			destroyPacketClass = getNMSClass("PacketPlayOutEntityDestroy");
 			destroyPacketConstructor = destroyPacketClass.getConstructor(int[].class);
@@ -74,27 +71,14 @@ public class Hologram {
 	 * @param loc
 	 *            The location where this hologram is shown
 	 * @param lines
-	 *            The text-lines, from top to bottom, farbcodes are possible
-	 */
-	public Hologram(Location loc, String... lines) {
-		this(loc, Arrays.asList(lines));
-	}
-	
-	/**
-	 * Create a new hologram Note: The constructor will automatically initialize
-	 * the internal cache; it may take some millis
-	 * 
-	 * @param loc
-	 *            The location where this hologram is shown
-	 * @param lines
-	 *            The text-lines, from top to bottom, farbcodes are possible
+	 *            The text-lines, from top to bottom, color codes are possible
 	 */
 	public Hologram(Location loc, List<String> lines) {
 		this.lines = lines;
 		this.loc = loc;
 		this.players = new ArrayList<>();
-		this.spawnCache = new ArrayList<>();
-		this.destroyCache = new ArrayList<>();
+		this.spawnCache = new HashSet<>();
+		this.destroyCache = new HashSet<>();
 		
 		// Init
 		Location displayLoc = loc.clone().add(0, (ABS * lines.size()) - 1.97D, 0);
@@ -104,7 +88,7 @@ public class Hologram {
 			try {
 				Field field = packetClass.getDeclaredField("a");
 				field.setAccessible(true);
-				this.destroyCache.add(this.getDestroyPacket(new int[] { (int) field.get(packet) }));
+				this.destroyCache.add(this.getDestroyPacket((int) field.get(packet)));
 			} catch(Exception ex) {
 				ex.printStackTrace();
 			}
@@ -121,10 +105,10 @@ public class Hologram {
 	 * @return true, if the action was successful, else false
 	 */
 	public boolean display(Player p) {
-		for(int i = 0; i < spawnCache.size(); i++) {
-			sendPacket(p, spawnCache.get(i));
+		for(Object packet : spawnCache) {
+			sendPacket(p, packet);
 		}
-		
+
 		this.players.add(p.getUniqueId());
 		return true;
 	}
@@ -139,8 +123,8 @@ public class Hologram {
 	 */
 	public boolean destroy(Player p) {
 		if(this.players.contains(p.getUniqueId())) {
-			for(int i = 0; i < this.destroyCache.size(); i++) {
-				sendPacket(p, this.destroyCache.get(i));
+			for(Object packet : this.destroyCache) {
+				sendPacket(p, packet);
 			}
 			this.players.remove(p.getUniqueId());
 			return true;
@@ -213,7 +197,7 @@ public class Hologram {
 	
 	private Object getDestroyPacket(int... id) {
 		try {
-			return destroyPacketConstructor.newInstance(id);
+			return destroyPacketConstructor.newInstance((Object) id);
 		} catch(InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		}

@@ -27,51 +27,49 @@ public class Countdown_Grace extends Countdown {
 				}
 			}
 			
-			Bukkit.getScheduler().scheduleSyncRepeatingTask(SurvivalGames.getInstance(), new Runnable() {
-				public void run() {
-					grace--;
-					if(grace == 30 | grace == 20 | grace == 15 | grace == 10 | grace == 5 | grace == 4 | grace == 3 | grace == 2) {
-						for(Player all : Bukkit.getOnlinePlayers()) {
-							if(mana.getBoolean("Countdown.Grace.Broadcast.ActionBar")) {
-								TabActionTitle.sendActionBar(all, mana.getMessage("Countdown.Grace.Message").replace("%seconds%", grace + ""));
-							}
-						}
-						if(mana.getBoolean("Countdown.Grace.Broadcast.Chat")) {
-							Bukkit.broadcastMessage(mana.getMessage("Countdown.Grace.Message").replace("%seconds%", grace + ""));
-						}
-					}
-					if(grace == 1) {
-						for(Player all : Bukkit.getOnlinePlayers()) {
-							if(mana.getBoolean("Countdown.Grace.Broadcast.ActionBar")) {
-								TabActionTitle.sendActionBar(all, mana.getMessage("Countdown.Grace.Message").replace("%seconds%", grace + ""));
-							}
-						}
-						if(mana.getBoolean("Countdown.Grace.Broadcast.Chat")) {
-							Bukkit.broadcastMessage(mana.getMessage("Countdown.Grace.Message").replace("%seconds%", grace + ""));
-						}
-					}
-					if(grace == 0) {
-						for(Player all : Bukkit.getOnlinePlayers()) {
-							if(mana.getBoolean("Countdown.Grace.Broadcast.ActionBar")) {
-								TabActionTitle.sendActionBar(all, mana.getMessage("Countdown.Grace.EndMessage"));
-							}
-						}
-						SurvivalGames.setStatus(GameState.INGAME);
-						if(mana.getBoolean("Countdown.Grace.Broadcast.Chat")) {
-							Bukkit.broadcastMessage(mana.getMessage("Countdown.Grace.EndMessage"));
-						}
-						new Countdown_Game().start();
-					}
-					if(grace >= 0) {
-						for(Player all : Bukkit.getOnlinePlayers()) {
-							if(mana.getBoolean("Countdown.Grace.Broadcast.ActionBar")) {
-								TabActionTitle.sendActionBar(all, mana.getMessage("Countdown.Grace.Message").replace("%seconds%", grace + ""));
-							}
-							GraceScoreboard.update(all);
-						}
-					}
-				}
-			}, 0L, 20L);
+			Bukkit.getScheduler().scheduleSyncRepeatingTask(SurvivalGames.getInstance(), () -> {
+                grace--;
+                if(grace == 30 | grace == 20 | grace == 15 | grace == 10 | grace == 5 | grace == 4 | grace == 3 | grace == 2) {
+                    for(Player all : Bukkit.getOnlinePlayers()) {
+                        if(mana.getBoolean("Countdown.Grace.Broadcast.ActionBar")) {
+                            TabActionTitle.sendActionBar(all, mana.getMessage("Countdown.Grace.Message").replace("%seconds%", grace + ""));
+                        }
+                    }
+                    if(mana.getBoolean("Countdown.Grace.Broadcast.Chat")) {
+                        Bukkit.broadcastMessage(mana.getMessage("Countdown.Grace.Message").replace("%seconds%", grace + ""));
+                    }
+                }
+                if(grace == 1) {
+                    for(Player all : Bukkit.getOnlinePlayers()) {
+                        if(mana.getBoolean("Countdown.Grace.Broadcast.ActionBar")) {
+                            TabActionTitle.sendActionBar(all, mana.getMessage("Countdown.Grace.Message").replace("%seconds%", grace + ""));
+                        }
+                    }
+                    if(mana.getBoolean("Countdown.Grace.Broadcast.Chat")) {
+                        Bukkit.broadcastMessage(mana.getMessage("Countdown.Grace.Message").replace("%seconds%", grace + ""));
+                    }
+                }
+                if(grace == 0) {
+                    for(Player all : Bukkit.getOnlinePlayers()) {
+                        if(mana.getBoolean("Countdown.Grace.Broadcast.ActionBar")) {
+                            TabActionTitle.sendActionBar(all, mana.getMessage("Countdown.Grace.EndMessage"));
+                        }
+                    }
+                    SurvivalGames.setStatus(GameState.INGAME);
+                    if(mana.getBoolean("Countdown.Grace.Broadcast.Chat")) {
+                        Bukkit.broadcastMessage(mana.getMessage("Countdown.Grace.EndMessage"));
+                    }
+                    new Countdown_Game().start();
+                }
+                if(grace >= 0) {
+                    for(Player all : Bukkit.getOnlinePlayers()) {
+                        if(mana.getBoolean("Countdown.Grace.Broadcast.ActionBar")) {
+                            TabActionTitle.sendActionBar(all, mana.getMessage("Countdown.Grace.Message").replace("%seconds%", grace + ""));
+                        }
+                        GraceScoreboard.update(all);
+                    }
+                }
+            }, 0L, 20L);
 		}
 	}
 }

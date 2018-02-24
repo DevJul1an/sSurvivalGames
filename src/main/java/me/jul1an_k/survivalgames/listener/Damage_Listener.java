@@ -17,8 +17,7 @@ public class Damage_Listener implements Listener {
 			if(e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
 				Player d = (Player) e.getDamager();
 				Player en = (Player) e.getEntity();
-				if(SurvivalGames.alive.contains(en.getName()) && SurvivalGames.alive.contains(d.getName())) {
-					e.setCancelled(false);
+				if(SurvivalGames.alive.contains(en.getUniqueId()) && SurvivalGames.alive.contains(d.getUniqueId())) {
 					if(SurvivalGames.lastdamage.containsKey(en)) {
 						SurvivalGames.lastdamage.remove(en);
 					}

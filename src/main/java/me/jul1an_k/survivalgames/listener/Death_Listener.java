@@ -12,6 +12,8 @@ import me.jul1an_k.survivalgames.utils.GameState;
 import me.jul1an_k.survivalgames.utils.StatsSystem;
 import me.jul1an_k.survivalgames.utils.manager.MessageManager;
 
+import java.util.UUID;
+
 public class Death_Listener implements Listener {
 	
 	private MessageManager mana = SurvivalGames.getMessageManager();
@@ -24,8 +26,8 @@ public class Death_Listener implements Listener {
 		if(SurvivalGames.getStatus() == GameState.INGAME || SurvivalGames.getStatus() == GameState.DEATHMATCH) {
 			Player d = e.getEntity();
 			
-			if(SurvivalGames.alive.contains(d.getName())) {
-				SurvivalGames.alive.remove(d.getName());
+			if(SurvivalGames.alive.contains(d.getUniqueId())) {
+				SurvivalGames.alive.remove(d.getUniqueId());
 			}
 
 			if(d.getKiller() != null) {
@@ -48,10 +50,10 @@ public class Death_Listener implements Listener {
 			}
 			
 			if(SurvivalGames.alive.size() == 1) {
-				String name = SurvivalGames.alive.get(0);
+				UUID uuid = SurvivalGames.alive.get(0);
 				SurvivalGames.setStatus(GameState.RESTART);
 				
-				Bukkit.broadcastMessage(mana.getMessage("Messages.Win").replace("%player%", name));
+				Bukkit.broadcastMessage(mana.getMessage("Messages.Win").replace("%player%", Bukkit.getPlayer(uuid).getName()));
 				
 				new Countdown_Restart().start();
 			}

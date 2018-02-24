@@ -13,6 +13,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import java.util.UUID;
+
 public class Quit_Listener implements Listener {
 	
 	private MessageManager mana = SurvivalGames.getMessageManager();
@@ -28,10 +30,8 @@ public class Quit_Listener implements Listener {
 		if(SurvivalGames.getStatus() == GameState.LOBBY) {
 			e.setQuitMessage(mana.getMessage("Messages.Quit").replace("%player%", p.getName()).replace("%ingame%", Bukkit.getOnlinePlayers().size() - 1 + "").replace("%max_players%", Bukkit.getMaxPlayers() + ""));
 		} else if(SurvivalGames.getStatus() == GameState.INGAME) {
-			if(SurvivalGames.lastdamage.containsKey(p) && SurvivalGames.alive.contains(p.getName())) {
-				if(SurvivalGames.alive.contains(p.getName())) {
-					SurvivalGames.alive.remove(p.getName());
-				}
+			if(SurvivalGames.lastdamage.containsKey(p) && SurvivalGames.alive.contains(p.getUniqueId())) {
+				SurvivalGames.alive.remove(p.getUniqueId());
 				
 				Player k = SurvivalGames.lastdamage.get(p);
 				k.sendMessage(mana.getMessage("Messages.YouKilled").replace("%player%", p.getName()));
@@ -42,10 +42,10 @@ public class Quit_Listener implements Listener {
 					Bukkit.broadcastMessage(mana.getMessage("Messages.RemainingPlayers").replace("%remaining%", living + ""));
 				}
 				if(SurvivalGames.alive.size() == 1) {
-					String name = SurvivalGames.alive.get(0);
+					UUID uuid = SurvivalGames.alive.get(0);
 					SurvivalGames.setStatus(GameState.RESTART);
 					
-					Bukkit.broadcastMessage(mana.getMessage("Messages.Win").replace("%player%", name));
+					Bukkit.broadcastMessage(mana.getMessage("Messages.Win").replace("%player%", Bukkit.getPlayer(uuid).getName()));
 					
 					new Countdown_Restart().start();
 				}
@@ -64,10 +64,8 @@ public class Quit_Listener implements Listener {
 		if(SurvivalGames.getStatus() == GameState.LOBBY) {
 			e.setLeaveMessage(mana.getMessage("Messages.Quit").replace("%player%", p.getName()).replace("%ingame%", Bukkit.getOnlinePlayers().size() - 1 + "").replace("%max_players%", Bukkit.getMaxPlayers() + ""));
 		} else if(SurvivalGames.getStatus() == GameState.INGAME) {
-			if(SurvivalGames.lastdamage.containsKey(p) && SurvivalGames.alive.contains(p.getName())) {
-				if(SurvivalGames.alive.contains(p.getName())) {
-					SurvivalGames.alive.remove(p.getName());
-				}
+			if(SurvivalGames.lastdamage.containsKey(p) && SurvivalGames.alive.contains(p.getUniqueId())) {
+				SurvivalGames.alive.remove(p.getUniqueId());
 				
 				Player k = SurvivalGames.lastdamage.get(p);
 				k.sendMessage(mana.getMessage("Messages.YouKilled").replace("%player%", p.getName()));
@@ -79,10 +77,10 @@ public class Quit_Listener implements Listener {
 				}
 				
 				if(SurvivalGames.alive.size() == 1) {
-					String name = SurvivalGames.alive.get(0);
+					UUID uuid = SurvivalGames.alive.get(0);
 					SurvivalGames.setStatus(GameState.RESTART);
 					
-					Bukkit.broadcastMessage(mana.getMessage("Messages.Win").replace("%player%", name));
+					Bukkit.broadcastMessage(mana.getMessage("Messages.Win").replace("%player%", Bukkit.getPlayer(uuid).getName()));
 					
 					new Countdown_Restart().start();
 				}

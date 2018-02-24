@@ -1,9 +1,7 @@
 package me.jul1an_k.survivalgames.utils.manager;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import me.jul1an_k.survivalgames.SurvivalGames;
 import me.jul1an_k.survivalgames.utils.Voting_Map;
@@ -21,7 +19,7 @@ public class VoteManager {
 		FileConfiguration cfg = YamlConfiguration.loadConfiguration(file);
 		
 		for(String arena : cfg.getConfigurationSection("").getKeys(false)) {
-			List<Location> loclist = new ArrayList<Location>();
+			List<Location> loclist = new ArrayList<>();
 			for(String loc : cfg.getConfigurationSection(arena).getKeys(false)) {
 				if(loc.equalsIgnoreCase("Name")) {
 					continue;
@@ -42,8 +40,8 @@ public class VoteManager {
 	}
 	
 	public static void endVote() {
-		List<Voting_Map> maps = SurvivalGames.getMaps();
-		Voting_Map m = null;
+		Collection<Voting_Map> maps = SurvivalGames.getMaps();
+		Voting_Map m;
 		int votes = -1;
 
 		for(Voting_Map map : maps) {

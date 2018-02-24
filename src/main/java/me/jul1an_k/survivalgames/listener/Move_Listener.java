@@ -18,8 +18,8 @@ public class Move_Listener implements Listener {
 		if(SurvivalGames.getStatus() == GameState.WARMUP) {
 			double X = p.getLocation().getBlockX();
 			double Z = p.getLocation().getBlockZ();
-			if(SurvivalGames.locs.containsKey(p.getName())) {
-				Location locs = SurvivalGames.locs.get(p.getName());
+			if(SurvivalGames.locs.containsKey(p.getUniqueId())) {
+				Location locs = SurvivalGames.locs.get(p.getUniqueId());
 				double X2 = locs.getBlockX();
 				double Z2 = locs.getBlockZ();
 				if(X != X2 || Z != Z2) {
