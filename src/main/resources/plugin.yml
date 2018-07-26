@@ -2,6 +2,7 @@ name: sSurvivalGames
 version: ${project.version}
 author: Jul1an_K
 depend: [Multiverse-Core]
+api-version: 1.13
 main: me.jul1an_k.survivalgames.SurvivalGames
 
 

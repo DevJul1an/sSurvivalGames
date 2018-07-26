@@ -25,7 +25,7 @@ public class InGameScoreboard {
 	private static void show(Player p) {
 		currentScore = 0;
 		Scoreboard board = Bukkit.getScoreboardManager().getMainScoreboard();
-		Objective obj = board.getObjective("sgboard") != null ? board.getObjective("sgboard") : board.registerNewObjective("sgboard", "sgboard");
+		Objective obj = board.getObjective("sgboard") != null ? board.getObjective("sgboard") : board.registerNewObjective("sgboard", "dummy", "sgboard");
 		
 		obj.setDisplayName(mana.getMessage("Scoreboard.InGame.Title"));
 		obj.setDisplaySlot(DisplaySlot.SIDEBAR);

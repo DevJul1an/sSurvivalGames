@@ -23,12 +23,11 @@ public class ChestManager {
 			String[] split = s.split(":");
 			
 			Material material = Material.valueOf(split[0].toUpperCase());
-			short subid = Short.parseShort(split[1]);
-			int amount = Integer.parseInt(split[2]);
-			int chance = Integer.parseInt(split[3]);
+			int amount = Integer.parseInt(split[1]);
+			int chance = Integer.parseInt(split[2]);
 			
 			for(int i = 0; i < chance; i++) {
-				items.add(new ItemStack(material, amount, subid));
+				items.add(new ItemStack(material, amount));
 			}
 		}
 	}

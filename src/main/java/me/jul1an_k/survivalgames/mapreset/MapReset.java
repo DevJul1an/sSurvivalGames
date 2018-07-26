@@ -40,12 +40,10 @@ public class MapReset {
 			int y = Integer.parseInt(array[2]);
 			int z = Integer.parseInt(array[3]);
 			Material m = Material.getMaterial(array[4].toUpperCase());
-			byte data = Byte.parseByte(array[5]);
 			
 			Location loc = new Location(w, x, y, z);
 			
 			loc.getBlock().setType(m);
-			loc.getBlock().setData(data);
 		}
 		
 		long stop = System.currentTimeMillis();
@@ -61,33 +59,30 @@ public class MapReset {
 	}
 	
 	public static class MapResetListener implements Listener {
-		
-		@SuppressWarnings("deprecation")
+
 		@EventHandler
 		public void onPlace(BlockPlaceEvent e) {
 			if(MapReset.isEnabled()) {
 				Block b = e.getBlockAgainst();
 				
-				breakedBlocks.add(b.getLocation().getWorld().getName() + ";" + b.getLocation().getBlockX() + ";" + b.getLocation().getBlockY() + ";" + b.getLocation().getBlockZ() + ";" + b.getType().toString() + ";" + b.getData());
+				breakedBlocks.add(b.getLocation().getWorld().getName() + ";" + b.getLocation().getBlockX() + ";" + b.getLocation().getBlockY() + ";" + b.getLocation().getBlockZ() + ";" + b.getType().toString());
 			}
 		}
-		
-		@SuppressWarnings("deprecation")
+
 		@EventHandler
 		public void onBreak(BlockBreakEvent e) {
 			if(MapReset.isEnabled()) {
 				Block b = e.getBlock();
 				
-				breakedBlocks.add(b.getLocation().getWorld().getName() + ";" + b.getLocation().getBlockX() + ";" + b.getLocation().getBlockY() + ";" + b.getLocation().getBlockZ() + ";" + b.getType().toString() + ";" + b.getData());
+				breakedBlocks.add(b.getLocation().getWorld().getName() + ";" + b.getLocation().getBlockX() + ";" + b.getLocation().getBlockY() + ";" + b.getLocation().getBlockZ() + ";" + b.getType().toString());
 			}
 		}
-		
-		@SuppressWarnings("deprecation")
+
 		@EventHandler
 		public void onExplode(EntityExplodeEvent e) {
 			if(MapReset.isEnabled()) {
 				for(Block b : e.blockList()) {
-					breakedBlocks.add(b.getLocation().getWorld().getName() + ";" + b.getLocation().getBlockX() + ";" + b.getLocation().getBlockY() + ";" + b.getLocation().getBlockZ() + ";" + b.getType().toString() + ";" + b.getData());
+					breakedBlocks.add(b.getLocation().getWorld().getName() + ";" + b.getLocation().getBlockX() + ";" + b.getLocation().getBlockY() + ";" + b.getLocation().getBlockZ() + ";" + b.getType().toString());
 				}
 			}
 		}
