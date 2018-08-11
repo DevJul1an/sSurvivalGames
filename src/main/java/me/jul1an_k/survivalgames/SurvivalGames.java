@@ -87,12 +87,10 @@ public class SurvivalGames extends JavaPlugin {
 		new Countdown_Lobby().start();
 		VoteManager.startVote();
 		System.out.println("[sSurvivalGames] Version " + this.getDescription().getVersion() + " by " + this.getDescription().getAuthors().get(0) + " loaded!");
-		if(!registerCommands()) {
-			System.err.println("[sSurvivalGames] Error: The Commands can't load!" + "[sSurvivalGames] Is the Plugin up to date?");
-		}
-		if(!registerListener()) {
-			System.err.println("[sSurvivalGames] Error: The Events can't load!" + "[sSurvivalGames] Is the Plugin up to date?");
-		}
+
+		registerCommands();
+		registerListener();
+
 		if(cfg.getBoolean("MySQL.Enable")) {
 			MySQL.connect(cfg.getString("MySQL.Host"), cfg.getInt("MySQL.Port"), cfg.getString("MySQL.Database"), cfg.getString("MySQL.User"), cfg.getString("MySQL.Password"));
 			if(MySQL.hasConnection()) {
@@ -132,12 +130,11 @@ public class SurvivalGames extends JavaPlugin {
 		MySQL.disconnect();
 	}
 	
-	private boolean registerCommands() {
+	private void registerCommands() {
 		this.getCommand("survivalgames").setExecutor(new Command_SurvivalGames());
-		return true;
 	}
 
-	private boolean registerListener() {
+	private void registerListener() {
 		Bukkit.getPluginManager().registerEvents(new Join_Listener(), this);
 		Bukkit.getPluginManager().registerEvents(new Ping_Listener(), this);
 		Bukkit.getPluginManager().registerEvents(new Break_Listener(), this);
@@ -156,7 +153,6 @@ public class SurvivalGames extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new ItemDrop_Listener(), this);
 		
 		Bukkit.getPluginManager().registerEvents(new MapResetListener(), this);
-		return true;
 	}
 	
 	public static void addMap(Voting_Map m) {
